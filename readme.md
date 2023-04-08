@@ -1,14 +1,20 @@
-Users will be able to access a database of music through last.fm and be able to search music based off of genre, artist, and track. You can add music of your choice to a playlist, and you will be able to recieve music recommendations based off of your listening history. You can also be matched to users who have similar music taste as you and be able to connect with them.
+Users will be able to access a database of music through last.fm and be able to search music based off of genre, artist, and track. You can add music of your choice to a playlist. You can also be matched to users who have similar music taste as you and be able to connect with them.
 
 
 API Chosen
 last.fm API 
 
-ERD
-WIP
+
+MVP ERD
+_______________________
+![ERD](MVPERD.png)
+
+Stretch ERD
+_______________________
+![ERD](STRETCHERD.png)
 
 RESTful Routing Chart
-WIP
+![wireframe](RESTfulRouting.png)
 
 
 Wireframes
@@ -29,6 +35,7 @@ MVP Goals
 
 
 Stretch Goals
-- have a music player in app
-- customize user profile
-- connect with other users thrugh messaging or follows
+- Have a music player in app
+- Customize user profile
+- Connect with other users through messaging or follows
+- You will be able to recieve music recommendations based off of your listening history
