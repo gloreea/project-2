@@ -8,10 +8,10 @@ const axios = require("axios")
 app.set('view engine', 'ejs');
 
 
-app.get ("/playlists", async (req,res) => {
-    
+router.get ("/", async (req,res) => {
+    res.render("playlists/index.ejs")
 })
-app.get ("/playlists", async (req,res) => {
+app.post ("/playlists", async (req,res) => {
 
 })
 app.post ("/playlists", async (req,res) => {
@@ -23,3 +23,5 @@ app.get ("/playlists", async (req,res) => {
 app.get ("/playlists", async (req,res) => {
 
 })
+  
+module.exports = router

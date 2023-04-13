@@ -9,7 +9,7 @@
 
             <p> <%= track.artist %></p>
 
-            <a href="/tracks/details/:track_id<% track.url %>">More Info</a>
+            <a href="/tracks/details?track_name=<%= track.name %>&artist_name=<%= track.artist %>">More Info</a>
         </div>
     <% }) %>
 </div>

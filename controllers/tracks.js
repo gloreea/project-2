@@ -39,13 +39,14 @@ router.post('/', (req, res) => {
     trackResults.push(req.body)
 })
 // GET /tracks/:track_id -- shpw details about a track
-router.get("/details/:track_id", async(req, res) => {
-    const url = (`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${process.env.API_KEY}&track=${req.params.track_id}&artist=${req.params.track_id}&format=json`)
+router.get("/details", async(req, res) => {
+    const url = (`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${process.env.API_KEY}&track=${req.query.track_name}&artist=${req.query.artist_name}&format=json`)
+    console.log(url)
     axios.get(url)
     .then(response => {
-        const trackResult = response.data.track
-        console.log(req.params.track_id)
-        console.log(trackResult)
+        const trackResult = response.data
+        console.log(response)
+        console.log(req.query.track_name)
         res.render("tracks/details.ejs", {
             track: trackResult
         })

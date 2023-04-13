@@ -2,11 +2,11 @@
 <h1><%=  track.name %></h1>
     <p> Listeners: <%= track.listeners %> </p>
     <p> Playcount: <%= track.playcount  %></p>
-<h2>Artist: <%=  track.artist.name  %></h2>
-<h2>Album: <%=  track.album.title  %></h2>
+<h2>Artist: <%=  track.artist  %></h2>
+<h2>Album: <%=  track.album %></h2>
   
-<h3>Published: <%= track.wiki.published %></h3>
-    <form method="POST" action="/tracks/details/:track_id/<%= track.url %>/playlists">
+<h3>Published: <%= track.wiki %></h3>
+    <form method="POST" action="/tracks/:track_id/<%= track.url %>/playlists">
         <input hidden type="text" name="track" value="<%= track.name %>">
         
         <button type="submit">Add to Playlist</button>
