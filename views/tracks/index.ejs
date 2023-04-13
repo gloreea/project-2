@@ -1,0 +1,11 @@
+<%- include('../partials/header.ejs') %>
+<h1>LastFM Track Search</h1>
+<p>Search for tracks below...</p>
+
+<form method="GET" action="/tracks/search">
+    <label for="search">Track Search</label>
+    <input id="search" name="search" type="text" placeholder="enter search...."/>
+
+    <button type="submit">Search</button>
+</form>
+<%- include('../partials/footer.ejs') %>

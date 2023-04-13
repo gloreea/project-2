@@ -21,9 +21,9 @@ Wireframes
     WIP
 
 User Stories
-- As a user I want to be able to create playlist of my favorite and artists so I can have a place saved with music specific to me.
+- As a user I want to be able to create playlist of my favorite tracks so I can have a place saved with music specific to me.
 - As a user I want to be recommended music based off of my listening history so I can explore new music similar to my taste
-- As a user I want to be able to search different tracks, artists, and genres of my choice and add them to favorites/playlists.
+- As a user I want to be able to search different tracks and add them to a favorites/playlists.
 - As a user I want to be matched to other users who have similar istening history and connect to them.
 
 MVP Goals
