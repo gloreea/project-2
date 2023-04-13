@@ -10,6 +10,10 @@
             <p> <%= track.artist %></p>
 
             <a href="/tracks/details?track_name=<%= track.name %>&artist_name=<%= track.artist %>">More Info</a>
+            <form method="POST" action="/playlists">
+                <input hidden type="text" name="track" value="<%= track.name %>">
+                <button type="submit">Add to Playlist</button>
+          </form>
         </div>
     <% }) %>
 </div>

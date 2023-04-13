@@ -61,6 +61,7 @@ app.get('/', (req, res) => {
 
 app.use('/users', require('./controllers/user.js'))
 app.use('/tracks', require('./controllers/tracks.js'))
+app.use('/playlists', require('./controllers/playlists.js'))
 
 // listen on a port
 app.listen(PORT, () => {

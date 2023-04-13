@@ -9,13 +9,32 @@ app.set('view engine', 'ejs');
 
 
 router.get ("/", async (req,res) => {
-    res.render("playlists/index.ejs")
+    const playlists = await db.playlist.findAll()
+    res.render("playlists/index.ejs", {
+        playlists
+    })
 })
-app.post ("/playlists", async (req,res) => {
-
+router.post ("/playlists", async (req,res) => {
+    try {
+        const playlist = await db.playlist.create()
+        res.render("playlists/index.ejs", {
+            playlist
+        })
+    } catch(err) {
+        console.log(err)
+        res.status(500).send("Server had an error")
+    }
 })
-app.post ("/playlists", async (req,res) => {
-
+router.get ("/:id", async (req,res) => {
+    try {
+        const playlist = await db.playlist.findbyId()
+        res.render("playlists/index.ejs", {
+            playlist
+        })
+    } catch(err) {
+        console.log(error)
+        res.status(500).send("Server had an error")
+    }
 })
 app.get ("/playlists", async (req,res) => {
 

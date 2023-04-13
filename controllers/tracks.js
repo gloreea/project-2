@@ -44,7 +44,7 @@ router.get("/details", async(req, res) => {
     console.log(url)
     axios.get(url)
     .then(response => {
-        const trackResult = response.data
+        const trackResult = response.data.track
         console.log(response)
         console.log(req.query.track_name)
         res.render("tracks/details.ejs", {
