@@ -4,6 +4,7 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const cryptoJs = require('crypto-js')
 const db = require('./models')
+const methodOverride = require("method-override")
 
 // app config
 const app = express()
@@ -14,6 +15,8 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: false}))
 // tells express to parse incoming cookies sent from the browser
 app.use(cookieParser())
+app.use(methodOverride("_method"))
+
 app.use((req, res, next) => {
     // incoming console logger
     console.log(`[${new Date().toLocaleString()}]: ${req.method} ${req.url}`)

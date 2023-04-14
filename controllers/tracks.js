@@ -58,5 +58,27 @@ router.get("/details", async(req, res) => {
         res.status(500).send("Server had an error")
         })
     })
+
+router.post("/:id/playlists/:playlist_id", async (req, res) => {
+        try {
+          const trackId = req.params.track_name; // Retrieve trackId from URL parameter
+          const playlistId = req.query.playlist.id; // Retrieve playlistId from URL parameter
+          const trackName = req.params.track_name; // Retrieve trackName from request body
+      
+          // Fetch track and playlist objects from the database
+          const track = await db.track.findByPk(trackId);
+          const playlist = await db.playlist.findByPk(playlistId);
+      
+          // Add track to the playlist
+          await playlist.addTrack(track);
+            res.render("tracks/index.ejs", {
+                track,
+                playlist
+            })
+        } catch (err) {
+          console.error(err);
+          res.status(500).json({ success: false, message: "Failed to add track to playlist" });
+        }
+      });
   
 module.exports = router

@@ -5,10 +5,9 @@
 <h2>Artist: <%=  track.artist["name"]  %></h2>
 <h2>Album: <%=  track.album["title"] %></h2>
   
-<h3>Published: <%= track.wiki["published"] %></h3>
-    <form method="POST" action="/tracks/:track_id/<%= track.url %>/playlists">
-        <input hidden type="text" name="track" value="<%= track.name %>">
-        
+<!-- <h3>Published: < track.wiki["published"] ></h3> -->
+    <form method="POST" action="/tracks/<%= track_name %>/playlists/<%= playlist.id %>">
+        <input hidden type="text" name="track" value="<%= track_name %>">
         <button type="submit">Add to Playlist</button>
   </form>
 <%- include('../partials/footer.ejs') %>

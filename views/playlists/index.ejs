@@ -12,15 +12,16 @@
         <% playlists.forEach((playlist) => { %>
             <li>
                <h2> <%= playlist.name %> </h2>
-                <a href="/playlists/<%= playlist.name %>">more info</a>
+                <a href="/playlists/<%= playlist.id %>">more info</a>
                 
                 <form method="POST" action="/playlists">
                     <input hidden type="text" name="playlists" value="<%= playlist.name %>">
                     
                 </form>
                 
-                <form method="POST" action="/playlists/?_method=DELETE">
-                    <input type="submit" value="Delete">
+                <form method="POST" action="/playlists/<%= playlist.id%>?_method=DELETE">
+                    <input type="hidden" id="id" value="<%= playlist.id %>" name="id" required>
+                    <button type="submit" >Delete</button>
                 </form>
                 
             </li>

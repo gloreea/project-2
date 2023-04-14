@@ -26,7 +26,7 @@ router.post ("/new", async (req,res) => {
         let [newPlaylist, created] = await db.playlist.findOrCreate({
             where: {
                 name: req.body.name,
-                userId: res.locals.user
+                userId: res.locals.user.id
             }
         })
         playlists.push(req.body)
@@ -36,15 +36,38 @@ router.post ("/new", async (req,res) => {
         res.status(500).send("Server had an error")
     }
 })
-router.get ("/:id", async (req,res) => {
-    res.render("playlists/details.ejs", {
-        playlist: req.params.name,
-        track_name: req.params.track_name,
-        track_artist: req.params.artist_name,
-    })
-})
-router.delete ("/playlists", async (req,res) => {
 
+router.get ("/:id", async (req,res) => {
+    try {
+        const foundPlaylist = await db.playlist.findOne({
+            where: {
+                id: req.params.id,
+            }
+        })
+        if (!foundPlaylist ) {
+            res.redirect("/")
+        } else {
+            res.render("playlists/details.ejs", {
+                foundPlaylist
+            })
+        }
+    } catch(err){
+        console.log(err)
+    }
+})
+router.delete ("/:id", async (req,res) => {
+    try {
+        const deletePlaylist = await db.playlist.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+       
+
+        res.redirect("/playlists")
+    } catch(err) {
+        console.log(err)
+    }
 })
   
 module.exports = router
