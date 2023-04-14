@@ -1,25 +1,32 @@
 <%-  include("../partials/header.ejs")%>
 <h1>My Playlists:</h1>
-<!-- <form method="GET" action="/playlists">
-    <label for="playlistSearch">Search:</label>
 
-    <input type="text" placeholder="search playlists..." name=""/>
-    <button type="submit">Search</button>
-</form> -->
+    <!-- <form method="GET" action="/">
+        <label for="playlistSearch">Search My Playlists:</label>
+    
+        <input type="text" placeholder="playlist name..." />
+     <button type="submit">Search</button>
+    </form>  -->
 
-<ul>
-    <% playlists.forEach((playlist) => { %>
-        <li>
-            <%= playlist.name %> 
-            
-        </li>
+    <ul>
+        <% playlists.forEach((playlist) => { %>
+            <li>
+               <h2> <%= playlist.name %> </h2>
+                <a href="/playlists/<%= playlist.name %>">more info</a>
+                
+                <form method="POST" action="/playlists">
+                    <input hidden type="text" name="playlists" value="<%= playlist.name %>">
+                    
+                </form>
+                
+                <form method="POST" action="/playlists/?_method=DELETE">
+                    <input type="submit" value="Delete">
+                </form>
+                
+            </li>
         <% }) %>
-        <form method="POST" action="/playlists">
-            <label for="name">Playlist Name:</label>
-            <input type="text" id="name" name="name" required>
-            <button type="submit">Create New Playlist</button>
-        </form>
-</ul>
+          
+    </ul>
 
 
 <%-  include("../partials/footer.ejs")%>

@@ -4,42 +4,46 @@ const ejsLayouts = require('express-ejs-layouts');
 const router = express.Router()
 const app = express();
 const axios = require("axios")
+const db = require('../models')
 
 app.set('view engine', 'ejs');
 
-
+// GET /playlists -- READ all playlists
 router.get ("/", async (req,res) => {
     const playlists = await db.playlist.findAll()
     res.render("playlists/index.ejs", {
         playlists
     })
 })
-router.post ("/playlists", async (req,res) => {
+// GET /playlists/new -- SHOW form to CREATE playlist
+router.get ("/new", async (req,res) => {
+        res.render("playlists/new.ejs")
+})
+// POST /playlists -- intake form data from /new and CREATE playlist
+router.post ("/new", async (req,res) => {
+    const playlists = await db.playlist.findAll()
     try {
-        const playlist = await db.playlist.create()
-        res.render("playlists/index.ejs", {
-            playlist
+        let [newPlaylist, created] = await db.playlist.findOrCreate({
+            where: {
+                name: req.body.name,
+                userId: res.locals.user
+            }
         })
+        playlists.push(req.body)
+        res.redirect("/playlists")
     } catch(err) {
         console.log(err)
         res.status(500).send("Server had an error")
     }
 })
 router.get ("/:id", async (req,res) => {
-    try {
-        const playlist = await db.playlist.findbyId()
-        res.render("playlists/index.ejs", {
-            playlist
-        })
-    } catch(err) {
-        console.log(error)
-        res.status(500).send("Server had an error")
-    }
+    res.render("playlists/details.ejs", {
+        playlist: req.params.name,
+        track_name: req.params.track_name,
+        track_artist: req.params.artist_name,
+    })
 })
-app.get ("/playlists", async (req,res) => {
-
-})
-app.get ("/playlists", async (req,res) => {
+router.delete ("/playlists", async (req,res) => {
 
 })
   

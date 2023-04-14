@@ -1,0 +1,11 @@
+<%- include("../partials/header.ejs") %>
+<h1> New Playlist</h1>
+<ul>
+ 
+        <form method="POST" action="/playlists/new">
+            <label for="name">Create a New Playlist:</label>
+            <input type="text" id="name" name="name" placeholder="new playlist name..."required>
+            <button type="submit">Create</button>
+        </form>
+</ul>
+<%- include("../partials/footer.ejs") %>

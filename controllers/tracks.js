@@ -4,6 +4,7 @@ const ejsLayouts = require('express-ejs-layouts');
 const router = express.Router()
 const app = express();
 const axios = require("axios")
+const db = require('../models')
 
 app.set('view engine', 'ejs');
 

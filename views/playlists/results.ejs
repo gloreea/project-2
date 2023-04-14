@@ -1,0 +1,22 @@
+<%- include('../partials/header.ejs') %>
+<h1> Search results for <%= playSearch %></h1>
+<ul>
+    <% playlists.forEach((playlist) => { %>
+        <li>
+           <h2> <%= playlist.name %> </h2>
+            <a href="/playlists/<%= playlist.name %>">more info</a>
+            
+            <form method="POST" action="/playlists">
+                <input hidden type="text" name="playlists" value="<%= playlist.name %>">
+                
+            </form>
+            
+            <form method="POST" action="/playlists/?_method=DELETE">
+                <input type="submit" value="Delete">
+            </form>
+            
+        </li>
+    <% }) %>
+      
+</ul>
+<%- include('../partials/footer.ejs') %>

@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.playlist.belongsTo(models.user)
+      models.playlist.belongsTo(models.user, {
+        foreignKey: {
+          name: "userId",
+        }
+      })
       models.playlist.hasMany(models.track)
     }
   }
@@ -19,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     track_name: DataTypes.STRING,
     track_artist: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'playlist',
