@@ -62,10 +62,27 @@ router.delete ("/:id", async (req,res) => {
                 id: req.params.id
             }
         })
-       
 
         res.redirect("/playlists")
     } catch(err) {
+        console.log(err)
+    }
+})
+
+router.put("/:id", async (req, res) => {
+    try {
+        const foundPlaylist = await db.playlist.findOne({
+            where: {
+                id: req.body.id
+                
+            }
+        })
+        foundPlaylist.name = req.body.name
+        await foundPlaylist.save()
+        res.render("playlists/details.ejs",{
+            foundPlaylist
+        })
+    } catch(err){
         console.log(err)
     }
 })

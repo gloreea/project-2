@@ -2,5 +2,12 @@
 <li>
     <h2><%= foundPlaylist.track_name %></h2>
     <h2><%= foundPlaylist.track_artist %></h2>
-
 </li>
+
+
+    <form method="POST" action="/playlists/<%= foundPlaylist.id %>/?_method=PUT">
+        <label>Edit Playlist Name:</label>
+        <input type="hidden" id="id" name="id" value="<%= foundPlaylist.id %>">
+        <input type="text" id="name" name="name" required>
+        <input type="submit">
+    </form>

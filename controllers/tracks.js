@@ -61,13 +61,8 @@ router.get("/details", async(req, res) => {
 
 router.post("/:id/playlists/:playlist_id", async (req, res) => {
         try {
-          const trackId = req.params.track_name; // Retrieve trackId from URL parameter
-          const playlistId = req.query.playlist.id; // Retrieve playlistId from URL parameter
-          const trackName = req.params.track_name; // Retrieve trackName from request body
-      
-          // Fetch track and playlist objects from the database
-          const track = await db.track.findByPk(trackId);
-          const playlist = await db.playlist.findByPk(playlistId);
+          const track = req.params.track_name; 
+          const playlist = req.query.playlist.id; 
       
           // Add track to the playlist
           await playlist.addTrack(track);
@@ -77,7 +72,7 @@ router.post("/:id/playlists/:playlist_id", async (req, res) => {
             })
         } catch (err) {
           console.error(err);
-          res.status(500).json({ success: false, message: "Failed to add track to playlist" });
+          res.status(500)({ success: false, message: "Failed to add track to playlist" });
         }
       });
   
